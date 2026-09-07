@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Cita - Clínica Veterinaria</title>
+    <!-- Enlace al archivo CSS externo -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Agendar Nueva Cita</h2>
+        <p class="subtitle">Complete los datos para registrar la visita.</p>
+
+        <form id="form-cita">
+            <!-- Campo: Nombre del Dueño -->
+            <div class="form-group">
+                <label for="nombre-dueno">Nombre del Dueño:</label>
+                <input type="text" id="nombre-dueno" name="nombre-dueno" placeholder="Ej. Juan Pérez" required>
+            </div>
+
+            <!-- Campo: Nombre de la Mascota -->
+            <div class="form-group">
+                <label for="nombre-mascota">Nombre de la Mascota:</label>
+                <input type="text" id="nombre-mascota" name="nombre-mascota" placeholder="Ej. Firulais" required>
+            </div>
+
+            <!-- Agrupación de Fecha y Hora para mejor diseño -->
+            <div class="form-row">
+                <!-- Campo: Fecha -->
+                <div class="form-group half-width">
+                    <label for="fecha-cita">Fecha:</label>
+                    <input type="date" id="fecha-cita" name="fecha-cita" required>
+                </div>
+
+                <!-- Campo: Hora -->
+                <div class="form-group half-width">
+                    <label for="hora-cita">Hora:</label>
+                    <input type="time" id="hora-cita" name="hora-cita" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit">Guardar Cita</button>
+        </form>
+    </div>
+
+</body>
+</html>
