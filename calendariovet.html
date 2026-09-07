@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendario de citas</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f7fb;
+      color: #263238;
+    }
+
+    .app {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      background: #4f8cff;
+      color: white;
+      width: 45px;
+      height: 45px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 23px;
+    }
+
+    h1 {
+      font-size: 24px;
+    }
+
+    .date {
+      color: #718096;
+      margin-top: 4px;
+    }
+
+    .today-btn {
+      border: none;
+      background: white;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,.08);
+    }
+
+    .calendar {
+      background: white;
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .calendar-header h2 {
+      font-size: 20px;
+    }
+
+    .arrows button {
+      border: none;
+      background: #eef4ff;
+      color: #4f8cff;
+      width: 35px;
+      height: 35px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 18px;
+      margin-left: 5px;
+    }
+
+    .timeline {
+      position: relative;
+    }
+
+    .appointment {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      min-height: 100px;
+      border-top: 1px solid #edf0f5;
+      padding: 18px 0;
+    }
+
+    .time {
+      color: #718096;
+      font-size: 14px;
+      padding-top: 5px;
+    }
+
+    .card {
+      border-left: 5px solid #4f8cff;
+      background: #f7faff;
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: .2s;
+    }
+
+    .card:hover {
+      transform: translateX(3px);
+      box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    }
+
+    .pet-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .pet-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: #e3edff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .pet-name {
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .owner {
+      color: #718096;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .type {
+      color: #4a5568;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .status {
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .confirmed {
+      background: #dcfce7;
+      color: #16803c;
+    }
+
+    .pending {
+      background: #fff4cc;
+      color: #9a6700;
+    }
+
+    .arrived {
+      background: #dbeafe;
+      color: #2563eb;
+    }
+
+    @media (max-width: 650px) {
+      .app {
+        margin: 20px auto;
+      }
+
+      header {
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .calendar {
+        padding: 15px;
+      }
+
+      .appointment {
+        grid-template-columns: 60px 1fr;
+      }
+
+      .card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app">
+
+    <header>
+      <div class="title">
+        <div class="logo">🐾</div>
+
+        <div>
+          <h1>Calendario de citas</h1>
+          <p class="date" id="currentDate"></p>
+        </div>
+      </div>
+
+      <button class="today-btn" onclick="goToday()">
+        Hoy
+      </button>
+    </header>
+
+    <main class="calendar">
+
+      <div class="calendar-header">
+        <h2 id="calendarDate"></h2>
+
+        <div class="arrows">
+          <button onclick="previousDay()">‹</button>
+          <button onclick="nextDay()">›</button>
+        </div>
+      </div>
+
+      <div class="timeline">
+
+        <div class="appointment">
+          <div class="time">08:00</div>
+
+          <div class="card">
+            <div class="pet-info">
+              <div class="pet-icon">🐶</div>
+
+              <div>
+                <div class="pet-name">Luna</div>
+                <div class="owner">María González</div>
+                <div class="type">Consulta general</div>
+              </div>
+            </div>
+
+            <span class="status confirmed">Confirmada</span>
+          </div>
+        </div>
+
+        <div class="appointment">
+          <div class="time">09:30</div>
+
+          <div class="card" style="border-color:#f6c344;">
+            <div class="pet-info">
+              <div class="pet-icon">🐕</div>
+
+              <div>
+                <div class="pet-name">Max</div>
+                <div class="owner">Carlos Ramírez</div>
+                <div class="type">Vacunación</div>
+              </div>
+            </div>
+
+            <span class="status pending">Pendiente</span>
+          </div>
+        </div>
+
+        <div class="appointment">
+          <div class="time">10:30</div>
+
+          <div class="card" style="border-color:#3b82f6;">
+            <div class="pet-info">
+              <div class="pet-icon">🐕</div>
+
+              <div>
+                <div class="pet-name">Toby</div>
+                <div class="owner">Ana López</div>
+                <div class="type">Revisión</div>
+              </div>
+            </div>
+
+            <span class="status arrived">En recepción</span>
+          </div>
+        </div>
+
+        <div class="appointment">
+          <div class="time">11:00</div>
+
+          <div class="card" style="border-color:#22c55e;">
+            <div class="pet-info">
+              <div class="pet-icon">🐱</div>
+
+              <div>
+                <div class="pet-name">Nala</div>
+                <div class="owner">Pedro Sánchez</div>
+                <div class="type">Peluquería</div>
+              </div>
+            </div>
+
+            <span class="status confirmed">Confirmada</span>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <script>
+    let selectedDate = new Date();
+
+    function formatDate(date) {
+      return date.toLocaleDateString("es-MX", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      });
+    }
+
+    function updateDate() {
+      const dateText = formatDate(selectedDate);
+
+      document.getElementById("currentDate").textContent =
+        dateText.charAt(0).toUpperCase() + dateText.slice(1);
+
+      document.getElementById("calendarDate").textContent =
+        dateText.charAt(0).toUpperCase() + dateText.slice(1);
+    }
+
+    function previousDay() {
+      selectedDate.setDate(selectedDate.getDate() - 1);
+      updateDate();
+    }
+
+    function nextDay() {
+      selectedDate.setDate(selectedDate.getDate() + 1);
+      updateDate();
+    }
+
+    function goToday() {
+      selectedDate = new Date();
+      updateDate();
+    }
+
+    updateDate();
+  </script>
+
+</body>
+</html>
