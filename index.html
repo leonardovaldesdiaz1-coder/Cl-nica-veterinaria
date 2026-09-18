@@ -1,85 +1,87 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>Clínica Veterinaria - Citas</title>
-    <link rel="stylesheet" href="styles.css">
+
+    <link rel="stylesheet"
+          href="styles.css">
+
 </head>
+
 
 <body>
 
+
     <header>
-        <h1>Clínica Veterinaria</h1>
-        <p>Gestión de citas</p>
+
+        <h1>
+            Clínica Veterinaria
+        </h1>
+
+        <p>
+            Gestión de citas
+        </p>
+
     </header>
 
+
     <main>
+
+
         <section class="contenedor">
-            <h2>Citas existentes</h2>
 
-            <div id="lista-citas">
+            <div class="section-header">
 
-                <div class="cita" data-id="1">
-                    <div>
-                        <h3>Max - Consulta general</h3>
-                        <p><strong>Dueño:</strong> Juan Pérez</p>
-                        <p>
-                            <strong>Fecha:</strong>
-                            <span class="fecha">2026-09-10</span>
-                        </p>
-                        <p>
-                            <strong>Hora:</strong>
-                            <span class="hora">10:00</span>
-                        </p>
-                    </div>
+                <div>
 
-                    <div class="acciones">
-                        <button class="btn-reprogramar"
-                                onclick="reprogramarCita(1)">
-                            Reprogramar
-                        </button>
+                    <h2>
+                        Citas existentes
+                    </h2>
 
-                        <button class="btn-cancelar"
-                                onclick="cancelarCita(1)">
-                            Cancelar
-                        </button>
-                    </div>
+                    <p>
+                        Administre las citas registradas
+                        en el sistema.
+                    </p>
+
                 </div>
 
 
-                <div class="cita" data-id="2">
-                    <div>
-                        <h3>Luna - Vacunación</h3>
-                        <p><strong>Dueño:</strong> María López</p>
-                        <p>
-                            <strong>Fecha:</strong>
-                            <span class="fecha">2026-09-12</span>
-                        </p>
-                        <p>
-                            <strong>Hora:</strong>
-                            <span class="hora">12:30</span>
-                        </p>
-                    </div>
+                <button
+                    class="btn-recargar"
+                    onclick="cargarCitas()">
 
-                    <div class="acciones">
-                        <button class="btn-reprogramar"
-                                onclick="reprogramarCita(2)">
-                            Reprogramar
-                        </button>
+                    Actualizar
 
-                        <button class="btn-cancelar"
-                                onclick="cancelarCita(2)">
-                            Cancelar
-                        </button>
-                    </div>
+                </button>
+
+            </div>
+
+
+            <div
+                id="lista-citas">
+
+                <div class="loading">
+                    Cargando citas...
                 </div>
 
             </div>
+
+
         </section>
+
+
     </main>
+
 
     <script src="script.js"></script>
 
 </body>
+
 </html>
